@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Deep Links App</string>
+    <string name="published">Published</string>
+    <string name="back">Back</string>
+    <string name="deep_link_website_url">Deep Link Website URL</string>
+    <string name="read_details">Read Details</string>
 </resources>

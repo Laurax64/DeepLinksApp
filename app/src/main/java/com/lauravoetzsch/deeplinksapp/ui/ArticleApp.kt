@@ -33,38 +33,31 @@ fun ArticleApp(
                 },
             )
         }
-        // Route for the navigation to a particular article when a user clicks on it
-        //  and for an incoming deep link
-        composable(Screen.Name.route) {
-            ArticleCardDetails(article = selectedArticle!!, onBack = appState::navigateBack)
-        }
 
-    //  Route for the navigation to a particular article when a user clicks on it
-    //  and for an incoming deep link
-    // Update with your own domain
-    composable(Screen.Name.route,
-        deepLinks = listOf(
-            navDeepLink { uriPattern = "https://sites.google.com/view/lauravoetzsch/articles/{name}" }
-        ),
-        arguments = listOf(
-            navArgument("name") {
-                type = NavType.StringType
-            }
-        )
-    ) { entry ->
-        val articleName = entry.arguments?.getString("name")
-        if (articleName != null) {
-            LaunchedEffect(articleName) {
-                viewModel.updateSelectedArticleByName(articleName)
-            }
-        }
-        selectedArticle?.let {
-            ArticleCardDetails(
-                article = it,
-                onBack = appState::navigateBack
+        // Route for navigation to a particular article when selected or via deep link
+        composable(
+            route = Screen.Name.route,
+            deepLinks = listOf(
+                navDeepLink { uriPattern = "https://sites.google.com/view/lauravoetzsch/articles/{name}" }
+            ),
+            arguments = listOf(
+                navArgument("name") {
+                    type = NavType.StringType
+                }
             )
+        ) { entry ->
+            val articleName = entry.arguments?.getString("name")
+            if (articleName != null) {
+                LaunchedEffect(articleName) {
+                    viewModel.updateSelectedArticleByName(articleName)
+                }
+            }
+            selectedArticle?.let { article ->
+                ArticleCardDetails(
+                    article = article,
+                    onBack = appState::navigateBack
+                )
+            }
         }
     }
-}
-
 }

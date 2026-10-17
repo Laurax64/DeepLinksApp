@@ -1,4 +1,4 @@
-package com.example.deeplinksbasics
+package com.lauravoetzsch.deeplinksapp
 
 import org.junit.Test
 

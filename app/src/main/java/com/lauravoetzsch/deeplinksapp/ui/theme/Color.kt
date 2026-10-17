@@ -1,4 +1,4 @@
-package com.example.deeplinksbasics.ui.theme
+package com.lauravoetzsch.deeplinksapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

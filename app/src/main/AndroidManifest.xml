@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lauravoetzsch.deeplinksapp">
 
     <application
+        android:name="com.lauravoetzsch.deeplinksapp.DeepLinksApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -26,6 +28,7 @@
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="http"/>
                 <data android:scheme="https"/>
                 <data android:host="sites.google.com"/>
                 <data android:pathPrefix="/articles"/>

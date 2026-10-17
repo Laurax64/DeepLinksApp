@@ -3,7 +3,6 @@ package com.lauravoetzsch.deeplinksapp.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,14 +27,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.lauravoetzsch.deeplinksapp.R
 import com.lauravoetzsch.deeplinksapp.data.Article
-import java.net.URI
 
 @Composable
 fun ArticleCell(
@@ -148,79 +145,21 @@ fun ArticleCell(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-
-                Spacer(modifier = Modifier.height(12.dp))
-
-                // Domain Host Chip & Action Footer
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    // Extract domain host cleanly
-                    val domainHost = try {
-                        URI(article.website).host?.removePrefix("www.") ?: "Article Link"
-                    } catch (_: Exception) {
-                        "Article Link"
-                    }
-
-                    Surface(
-                        shape = RoundedCornerShape(8.dp),
-                        color = MaterialTheme.colorScheme.surfaceVariant,
-                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
-                    ) {
-                        Text(
-                            text = domainHost,
-                            style = MaterialTheme.typography.labelSmall,
-                            fontWeight = FontWeight.Medium,
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-
-                    // Action Label
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = stringResource(R.string.read_details),
-                            style = MaterialTheme.typography.labelMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Surface(
-                            shape = CircleShape,
-                            color = MaterialTheme.colorScheme.primaryContainer,
-                            modifier = Modifier.size(24.dp)
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Text(
-                                    text = "→",
-                                    style = MaterialTheme.typography.labelMedium,
-                                    fontWeight = FontWeight.Bold,
-                                    color = MaterialTheme.colorScheme.onPrimaryContainer
-                                )
-                            }
-                        }
-                    }
-                }
             }
         }
     }
-}
+    }
 
-@Preview
-@Composable
-fun ArticleCellPreview() {
-    ArticleCell(
-        article = Article(
-            id = 1,
-            name = "Android App Architecture",
-            date = "June 30, 2025 — Present",
-            website = "https://sites.google.com/view/lauravoetzsch/articles/android-app-architecture",
-            drawable = R.drawable.app_architecture
+    @Preview
+    @Composable
+    fun ArticleCellPreview() {
+        ArticleCell(
+            article = Article(
+                id = 1,
+                name = "Android App Architecture",
+                date = "June 30, 2025 — Present",
+                website = "https://sites.google.com/view/lauravoetzsch/articles/android-app-architecture",
+                drawable = R.drawable.app_architecture
+            )
         )
-    )
-}
+    }

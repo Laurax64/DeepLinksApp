@@ -1,7 +1,5 @@
 package com.lauravoetzsch.deeplinksapp.ui
 
-import android.content.Intent
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -18,14 +16,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,13 +32,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import com.lauravoetzsch.deeplinksapp.R
 import com.lauravoetzsch.deeplinksapp.data.Article
 
@@ -52,7 +46,6 @@ fun ArticleCardDetails(
     article: Article,
     onBack: () -> Unit,
 ) {
-    val context = LocalContext.current
     val scrollState = rememberScrollState()
 
     Scaffold(
@@ -182,43 +175,6 @@ fun ArticleCardDetails(
                             color = MaterialTheme.colorScheme.onSurface
                         )
                     }
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Button(
-                            onClick = {
-                                try {
-                                    val intent = Intent(Intent.ACTION_VIEW, article.website.toUri())
-                                    context.startActivity(intent)
-                                } catch (_: Exception) {
-                                    Toast.makeText(context, "Cannot open web browser", Toast.LENGTH_SHORT).show()
-                                }
-                            },
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(text = "Open Link")
-                        }
-
-                        Spacer(modifier = Modifier.width(12.dp))
-
-                        OutlinedButton(
-                            onClick = {
-                                val sendIntent: Intent = Intent().apply {
-                                    action = Intent.ACTION_SEND
-                                    putExtra(Intent.EXTRA_TEXT, article.website)
-                                    type = "text/plain"
-                                }
-                                val shareIntent = Intent.createChooser(sendIntent, "Share Article Deep Link")
-                                context.startActivity(shareIntent)
-                            },
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(text = "Share")
-                        }
-                    }
                 }
             }
         }
@@ -233,7 +189,7 @@ fun ArticleCardDetailsPreview() {
             id = 1,
             name = "Android App Architecture",
             date = "June 30, 2025 — Present",
-            website = "https://sites.google.com/view/lauravoetzsch/articles/android-app-architecture",
+            website = "https://laurax64.github.io/articles/android-app-architecture",
             drawable = R.drawable.app_architecture
         ),
         onBack = {}

@@ -34,11 +34,11 @@ fun ArticleApp(
             )
         }
 
-        // Route for navigation to a particular article when selected or via deep link
-        composable(
-            route = Screen.Name.route,
+        //  Route for the navigation to a particular article when a user clicks on it
+        //  and for an incoming deep link
+        composable(Screen.Name.route,
             deepLinks = listOf(
-                navDeepLink { uriPattern = "https://sites.google.com/view/lauravoetzsch/articles/{name}" }
+                navDeepLink { uriPattern = "https://laurax64.github.io/articles/{name}" }
             ),
             arguments = listOf(
                 navArgument("name") {
@@ -52,9 +52,9 @@ fun ArticleApp(
                     viewModel.updateSelectedArticleByName(articleName)
                 }
             }
-            selectedArticle?.let { article ->
+            selectedArticle?.let {
                 ArticleCardDetails(
-                    article = article,
+                    article = it,
                     onBack = appState::navigateBack
                 )
             }

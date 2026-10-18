@@ -88,14 +88,14 @@ fun ArticleGridPreview() {
                 id = 1,
                 name = "Android App Architecture",
                 date = "June 30, 2025 - Present",
-                website = "https://sites.google.com/view/lauravoetzsch/articles/android-app-architecture",
+                website = "https://laurax64.github.io/articles/android-app-architecture",
                 drawable = R.drawable.app_architecture
             ),
             Article(
                 id = 2,
                 name = "Requirements",
                 date = "October 19, 2025",
-                website = "https://sites.google.com/view/lauravoetzsch/articles/requirements",
+                website = "https://laurax64.github.io/articles/requirements",
                 drawable = R.drawable.requirements
             )
         ),
